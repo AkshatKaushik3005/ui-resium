@@ -37,9 +37,6 @@ export default function Sidebar() {
             <AiOutlineRight className="my-auto mr-[5%] group-hover:duration-0 items-center" />
           </div>
         </div>
-        <ul className="list-none">
-          <li>Upload</li>
-        </ul>
       </div>
       <div className="flex justify-between items-center border-b-2 hover:bg-slate-100">
         <button className="items-center flex my-auto py-4 text-xl">
