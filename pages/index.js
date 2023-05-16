@@ -3,7 +3,7 @@ import Link from "next/link";
 import Navbar from "@/components/Header";
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import Sidebar from "@/components/Sidebar2";
+import Sidebar from "@/components/Sidebar2.js";
 import { useState } from "react";
 const Cesium = dynamic(() => import("../components/Cesium"), { ssr: false });
 

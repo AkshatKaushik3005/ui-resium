@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { FaSortDown, FaInbox, FaUser, FaUpload } from "react-icons/fa";
+import { FaInbox } from "react-icons/fa";
 import {
   AiOutlineGlobal,
   AiOutlineHome,
@@ -37,6 +36,7 @@ export default function Sidebar() {
             <AiOutlineRight className="my-auto mr-[5%] group-hover:duration-0 items-center" />
           </div>
         </div>
+        <div className="flex bg-white border-x-2 border-slate-400 h-full w-full mr-[10%]"></div>
       </div>
       <div className="flex justify-between items-center border-b-2 hover:bg-slate-100">
         <button className="items-center flex my-auto py-4 text-xl">
@@ -55,6 +55,9 @@ export default function Sidebar() {
           <div className="ml-[10%] ">Messages</div>
           <AiOutlineRight className="my-auto mr-[5%]  group-hover:duration-0 items-center" />
         </div>
+      </div>
+      <div className="flex flex-row">
+        <h1>test</h1>
       </div>
     </div>
   );
