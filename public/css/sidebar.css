@@ -1,0 +1,7 @@
+.div2{
+    display: none;
+  }
+  
+  .div1:hover + .div2 {
+    display: block;
+  }
