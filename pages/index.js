@@ -23,8 +23,7 @@ export default function index() {
       <div className="flex">
         {second ? <Sidebar /> : null}
         
-        <div className="grow">
-          <layer />
+        <div className=" grow h-screen">
           <Cesium />
         </div>
       </div>
