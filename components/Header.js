@@ -9,7 +9,7 @@ export default function Header({ second, setSecond }) {
   const [open, setOpen] = useState(false);
   return (
     <header>
-      <nav className="flex filter border-b-2 justify-between bg-slate-800 h-16 overflow-hidden  items-center">
+      <nav className="flex filter justify-between bg-slate-700 h-16 overflow-hidden  items-center">
         <Link className="flex items-center" href="/">
           <Image
             alt="Logo"
@@ -47,18 +47,6 @@ export default function Header({ second, setSecond }) {
             <AiOutlineNotification />
           </Link>
         </div>
-        <button className="flex rounded-full">
-          <div className="border-3/2 rounded-full border-slate-950">
-            <Image
-              className="rounded-full item-center"
-              alt="Avatar"
-              src="/avatar5.png"
-              width={30}
-              height={20}
-            />
-          </div>
-          <FaAngleDown className="my-auto items-center" />
-        </button>
       </nav>
     </header>
   );
