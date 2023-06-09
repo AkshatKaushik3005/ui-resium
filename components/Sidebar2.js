@@ -20,7 +20,9 @@ import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 // } from "@chakra-ui/react";
 // import {Checkbox,Slider,SliderTrack,SliderFilledTrack,SliderThumb,} from "@chakra-ui/react";
 //import {Checkbox, Slider,Grid } from '@mui/material';
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+import { tooltip, Typography } from "@material-tailwind/react";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 export default function Sidebar() {
    var [Tool,setTool] = useState(true);
    var [Layer,setLayer] = useState(true);
@@ -28,6 +30,8 @@ export default function Sidebar() {
    var [Element1,setElement1]=useState(true);
    var [Element2,setElement2]=useState(true);
    var [Bookmark,setBookmark]=useState(true);
+   var [label,setlabel]=useState(true);
+   var [label1,setlabel1]=useState(true);
      function tool( a,b,c,d,e,f){
        if(!b)
        {
@@ -194,6 +198,26 @@ export default function Sidebar() {
        }
 
     }
+    function tooltipcheck(a)
+    {
+      if(!a)
+      { a=!a;
+        setlabel(a);
+      }
+    }
+    function tooltipcheck1(a)
+    {
+      if(!a)
+      { a=!a;
+        setlabel1(a);
+      }
+    }
+    const title1=<div className="flex-col">
+                  <p>Layer</p>
+                  <p>Each layer in the list represents a different type of geographic information, such as roads,land use,or water features, and is usually represented by a different symbol or color</p>         
+                  </div>
+                  
+   
     return (
       <div className="flex">
       <div className=" flex-col  bg-slate-700  w-9 h-screen items-center">
@@ -218,7 +242,7 @@ export default function Sidebar() {
           </Tooltip>
         </div>
         <div className=" hover:border-l-4 border-blue-500">
-        <Tooltip title="Catalog" placement="right" arrow >
+        <Tooltip title="Geospatial Catalog" placement="right" arrow >
           <Link href="/" className="items-center flex  my-auto py-4 text-xl" onClick={() => {setCatalog(!Catalog),
             catalog(Catalog,Layer,Tool)
           }}>
@@ -237,7 +261,7 @@ export default function Sidebar() {
           </Tooltip>
         </div>
         <div className=" hover:border-l-4 border-blue-500">
-        <Tooltip title="Add" placement="right" arrow >
+        <Tooltip title="Upload" placement="right" arrow >
           <Link href="" className="items-center flex mx-auto  my-auto py-4 text-xl" onClick={() => {setElement2(!Element2),
             element2(Element2,Layer,Tool,Catalog,Element1)
           }} >
@@ -246,7 +270,7 @@ export default function Sidebar() {
           </Tooltip>
         </div>
         <div className=" hover:border-l-4 border-blue-500">
-        <Tooltip title="Add" placement="right" arrow >
+        <Tooltip title="Bookmark" placement="right" arrow >
           <Link href="" className="items-center flex mx-auto  my-auto py-4 text-xl" onClick={() => {setBookmark(!Bookmark),
             bookmark(Bookmark,Layer,Tool,Catalog,Element1,Element2)
           }} >
@@ -274,37 +298,70 @@ export default function Sidebar() {
         <div> 
            <div className=" flex-col border-l-2 border-slate-200 bg-slate-700 h-screen">
                       <div className="flex pt-4 w-72 " >
+                       
                         < GrStackOverflow size={20} className="ml-3 fill-blue-500" />
                         <p className="mr-14 ml-3  text-slate-100">Layers</p>
-                        <IoIosInformationCircleOutline size={25} className=" fill-blue-500 ml-24"/>
+                        
+                           <div className="cursor-pointer">
+                           <IoIosInformationCircleOutline size={25} className=" fill-blue-500 ml-24" onMouseOver={() => {setlabel(!label)}} onMouseOut={()=> {tooltipcheck(label)}}/>
+                           </div>
+                         { !label && (<div class="z-10 mt-10 ml-24 w-64 absolute transition duration-150 ease-in-out  shadow-lg bg-indigo-500 p-4 rounded">
+                              
+                                  <p class="text-sm font-bold text-white pb-1">Layers</p>
+                                  <p class="text-xs leading-4 text-white pb-3">Each layer in the list represents a different type of geographic information, such as roads,land use,or water features, and is usually represented by a different symbol or color</p>
+                              </div> 
+                             )}
+                          
+            
+                               
+                           
+                           
+                        
+                       
+                        
+                    
                       </div>
                       
              </div> 
              
         </div>
       )}
+
       {!Tool  && (
         
         <div className="flex-col border-l-2 border-slate-200 bg-slate-700 h-screen w-72"> 
             <div className="flex pt-4 w-72 border-b-2 border-slate-200" >
                         < BiWorld size={20} className="ml-3 fill-blue-500" />
                         <p className="mr-14 ml-3  text-slate-100">3DTools</p>
-                        <IoIosInformationCircleOutline size={25} className=" fill-blue-500 ml-24"/>
+                        <div className="cursor-pointer">
+                           <IoIosInformationCircleOutline size={25} className=" fill-blue-500 ml-24" onMouseOver={() => {setlabel1(!label1)}} onMouseOut={()=> {tooltipcheck1(label1)}}/>
+                           </div>
+                         { !label1 && (<div class="z-10 mt-10 ml-24 w-64 absolute transition duration-150 ease-in-out  shadow-lg bg-indigo-500 p-4 rounded">
+                              
+                                  <p class="text-sm font-bold text-white pb-1">3D Tools</p>
+                                  <p class="text-xs leading-4 text-white pb-3">A set of tools that operates on the 3D objects.</p>
+                              </div> 
+                             )}
+                        
             </div>
          
          
          <div >
-         <Tabs align='end' variant='enclosed'isFitted>
-            <TabList>
-              <Tab>One</Tab>
-              <Tab>Two</Tab>
+         <Tabs >
+            <TabList className="bg-slate-600 pt-4">
+              <Tab  id='col1' className=" text-blue-600 bg-slate-700 ml-1 pt-2 pl-2  focus:border-r-2 border-slate-800 focus:border-t-2 border-slate-800 focus:border-l-2 border-slate-800 focus:text-slate-400" >LOS</Tab>
+              <Tab id='col2' className=" text-blue-600 bg-slate-700 pl-2 pt-2  focus:border-r-2 border-slate-800 focus:border-t-2 border-slate-800 focus:border-l-2 border-slate-800 focus:text-slate-400 ">Blend and Swipe</Tab>
+              <Tab id='col3' className=" text-blue-600 bg-slate-700 pl-2 pt-2 pr-2  focus:border-r-2 border-slate-800 focus:border-t-2 border-slate-800 focus:border-l-2 border-slate-800 focus:text-slate-400 ">Fly Through</Tab>
             </TabList>
             <TabPanels>
                 <TabPanel>
-                    <p>one!</p>
+                    <p>Line of Sight</p>
                 </TabPanel>
                 <TabPanel>
-                    <p>two!</p>
+                    <p>Blend and Swipe</p>
+                </TabPanel>
+                <TabPanel>
+                    <p>Fly Through</p>
                 </TabPanel>
            </TabPanels>
          </Tabs>
@@ -317,15 +374,32 @@ export default function Sidebar() {
       )}
       
       {!Catalog &&(
-        <div>
               <div className="flex-col border-l-2 border-slate-200 bg-slate-700 h-screen w-72"> 
                  <div className="flex pt-4 w-72 border-b-2 border-slate-200" >
                     < IoIosAlbums size={20} className="ml-3 fill-blue-500" />
                     <p className="mr-14 ml-3  text-slate-100">GeoSpatial Catalog</p>
                     <IoIosInformationCircleOutline size={25} className=" fill-blue-500 ml-18"/>
                  </div>
+                 <div>
+               <Tabs >
+            <TabList className="bg-slate-600 pt-4">
+              <Tab  className=" text-blue-600 bg-slate-700 ml-2 pt-2 pl-2 focus:outline-none focus:border-r-2 border-slate-800 focus:border-t-2 border-slate-800 focus:border-l-2 border-slate-800 focus:text-slate-400" >WMS</Tab>
+              <Tab  className=" text-blue-600 bg-slate-700 pl-2 pt-2 pr-2 focus:outline-none focus:border-r-2 border-slate-800 focus:border-t-2 border-slate-800 focus:border-l-2 border-slate-800 focus:text-slate-400 ">WCS</Tab>
+            </TabList>
+            <TabPanels>
+                <TabPanel>
+                    <p>WMS</p>
+                </TabPanel>
+                <TabPanel>
+                    <p>WCS</p>
+                </TabPanel>
+           </TabPanels>
+         </Tabs> 
+         
               </div>
-        </div>
+              </div>
+             
+        
         
       )}
       {!Element1 &&(
@@ -340,6 +414,27 @@ export default function Sidebar() {
 
       {!Bookmark &&(
         <div className="flex-col border-l-2 border-slate-200 bg-slate-700 h-screen w-72">
+          <div className="flex pt-4 w-72 border-b-2 border-slate-200" >
+                    <IoIosBookmarks size={20} className="ml-3 fill-blue-500" />
+                    <p className="mr-14 ml-3  text-slate-100">Bookmarks</p>
+                 </div>
+                 <div>
+               <Tabs >
+            <TabList className="bg-slate-600 pt-4">
+              <Tab  className=" text-blue-600 bg-slate-700 ml-2 pt-2 pl-2 focus:outline-none focus:border-r-2 border-slate-800 focus:border-t-2 border-slate-800 focus:border-l-2 border-slate-800 focus:text-slate-400"  >Save Bookmark</Tab>
+              <Tab  className=" text-blue-600 bg-slate-700 pl-2 pt-2 pr-2 focus:outline-none focus:border-r-2 border-slate-800 focus:border-t-2 border-slate-800 focus:border-l-2 border-slate-800 focus:text-slate-400 ">My Bookmarks</Tab>
+            </TabList>
+            <TabPanels>
+                <TabPanel>
+                    <p>save bookmark</p>
+                </TabPanel>
+                <TabPanel>
+                    <p>My Bookmarks</p>
+                </TabPanel>
+           </TabPanels>
+         </Tabs> 
+         
+              </div>
         </div>
       )}
 
@@ -347,6 +442,3 @@ export default function Sidebar() {
     );
   }
 
-
-  // <p>Layer List </p>
-  // <p>Each layer in the list represents a different type of geographic information, such as roads,land use,or water features, and is usually represented by a different symbol or color</p>
