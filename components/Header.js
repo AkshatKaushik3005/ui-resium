@@ -5,7 +5,7 @@ import { FaBars, FaSearch, FaAngleDown } from "react-icons/fa";
 import { AiOutlineNotification } from "react-icons/ai";
 import { BsLightning } from "react-icons/bs";
 
-export default function Header({ second, setSecond }) {
+export default function Header({ second, setSecond}) {
   const [open, setOpen] = useState(false);
   return (
     <header>
