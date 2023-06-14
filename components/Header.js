@@ -15,8 +15,9 @@ export default function Header({ second, setSecond}) {
             alt="Logo"
             src={"/icon1.png"}
             className="object-contain"
-            width={50}
+            width={40}
             height={40}
+            
           />
           <h1 className="font-sans text-3xl text-sky-500 font-bold">
             3D Viewer

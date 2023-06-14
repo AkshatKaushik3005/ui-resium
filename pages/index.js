@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Navbar from "@/components/Header";
+//import Navbar from "@/components/Header";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import Sidebar from "@/components/Sidebar2.js";
@@ -17,14 +17,13 @@ export default function index() {
         <link rel="stylesheet" href="cesium/Widgets/widgets.css" />
         <link rel="stylesheet" href="css/sidebar.css" />
       </Head>
-        <Navbar second={second} setSecond={setSecond}  />
+        {/* <Navbar second={second} setSecond={setSecond}  /> */}
       
      
 
       <div className="flex">
         {second ? <Sidebar /> : null}
-        
-        <div className="h-screen w-screen">
+        <div className=" h-screen w-screen relative z-0">
           <Cesium />
         </div>
       </div>
