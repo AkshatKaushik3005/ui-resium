@@ -1,7 +1,7 @@
 import { Viewer } from "resium";
 import React from "react";
-import ReactSearchBox from "react-search-box";
-import { AiOutlineSearch } from "react-icons/ai";
+import SearchBar from "./searchbar";
+import { fullname } from "react-lorem-ipsum";
 // import { Viewer as CesiumViewer } from "cesium";
 // const viewer = new Cesium.Viewer("cesiumContainer");
 // window.viewer = viewer;
@@ -14,17 +14,30 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 export default function Cesium() {
   
-  const viewer = React.useRef(null);
+ const viewer = React.useRef(null);
 
   return <Viewer 
     sceneModePicker={false}
     geocoder={false}
     homeButton={false}
     baseLayerPicker={false}
-    navigationHelpButton={false} ref={viewer}>
-      <div  className="pt-4 px-4" class="cesium-viewer-toolbar">
+    navigationHelpButton={false}
+    timeline={false}
+    animation={false}
+    creditContainer={document.createElement("div")}
+    style={
+      {
+        "width":'100%'
+      }
+    }
+   
+    //ref={viewer}
+    >
+      <div  className="cesium-viewer-toolbar" >
+      {/* <button type="button" class="cesium-toolbar-button "></button>  */}
         {/* <AiOutlineSearch /> */}
-      <ReactSearchBox placeholder=" SEARCH HERE" />
+       <SearchBar /> 
       </div>
+      
       </Viewer>
 }
