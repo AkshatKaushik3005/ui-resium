@@ -39,9 +39,10 @@ function a11yProps(index) {
   };
 }
 
-  export default function Panel3(){
+  export default function Panel3({info}){
     var [label1,setlabel1]=useState(true);
     const[value,setValue]=useState(0);
+    //console.log(info);
     function handleChange(event, newValue) {
       setValue(newValue);
     }
@@ -53,6 +54,7 @@ function a11yProps(index) {
         setlabel1(a);
       }
     }
+    
     return (
         <div className="  flex-col border-l-2 border-slate-200 bg-slate-800 h-screen w-80 overflow-auto"> 
         <div className="flex pt-4 pb-1  border-b-2 border-slate-200" >
@@ -113,12 +115,17 @@ function a11yProps(index) {
                   <TabPanel value={value} index={0}>
                     <div>
                       
-                    <Table1 />
+                    <Table1 info={info.filter((x)=>x.sp_category=='Vector')}/>
                     </div>
                     
                   </TabPanel>
                   <TabPanel value={value} index={1}>
-                    <div className="text-slate-400 text-sm">content of WCS</div>
+                  <div>
+                      
+                  <Table1 info={info.filter((x)=>x.sp_category=='Raster')}/>
+                      </div>
+                      
+                    
                   </TabPanel>
                   
                   </div>

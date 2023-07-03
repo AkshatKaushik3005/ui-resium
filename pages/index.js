@@ -8,8 +8,18 @@ import { useState } from "react";
 import { Fullscreen } from "../public/cesium";
 
 const Cesium = dynamic(() => import("../components/Cesium"), { ssr: false });
+export async function getServerSideProps(){
+  const response=await fetch("http://65.0.15.182:8081/catalogapi/v1/getDatasets");
+  const data=await response.json()
+  //console.log(response)
+  return{
+    props:{
+      info:data['data']
+    }
+  }
+}
 
-export default function index() {
+  export default function index({info}) {
 const [second, setSecond] = useState(true);
  // const [First, SetFirst] = useState(true);
   return (
@@ -35,7 +45,7 @@ const [second, setSecond] = useState(true);
         </div>
         </div> */}
         <div className="flex h-screen w-screen">
-          <Sidebar />
+          <Sidebar info={info} />
           <Cesium />
         </div>
         

@@ -15,7 +15,7 @@ import Panel5 from "./element2";
 import Panel6 from "./bookmark";
 import Panel7 from "./user";
 import Panel8 from "./setting";
-export default function Sidebar(second,setSecond) {
+export default function Sidebar({info}) {
    var [Tool,setTool] = useState(true);
    var [Layer,setLayer] = useState(true);
    var [Catalog,setCatalog] = useState(true);
@@ -25,16 +25,16 @@ export default function Sidebar(second,setSecond) {
    var [User,setUser]=useState(true);
    var [Setting,setSetting]=useState(true);
    //var [label1,setlabel1]=useState(true);
-   function adjust()
-   {
-    if(!second)
-     {
-      second=!second;
-      setSecond(second);
-     }
-   }
+  //  function adjust()
+  //  {
+  //   if(!second)
+  //    {
+  //     second=!second;
+  //     setSecond(second);
+  //    }
+  //  }
      function tool( a,b,c,d,e,f,g,h){
-     adjust();
+     //adjust();
        if(!b)
        {
         b=!b;
@@ -72,7 +72,7 @@ export default function Sidebar(second,setSecond) {
        }
      }
      function layer( a,b,c,d,e,f,g,h){
-      adjust();
+     // adjust();
       if(!b)
       {
        b=!b;
@@ -110,7 +110,7 @@ export default function Sidebar(second,setSecond) {
        }
     }
     function catalog( a,b,c,d,e,f,g,h){
-      adjust();
+     // adjust();
       if(!b)
       {
        b=!b;
@@ -148,7 +148,7 @@ export default function Sidebar(second,setSecond) {
        }
     }
     function element1( a,b,c,d,e,f,g,h){
-      adjust();
+     // adjust();
       if(!b)
       {
        b=!b;
@@ -187,7 +187,7 @@ export default function Sidebar(second,setSecond) {
 
     }
     function element2( a,b,c,d,e,f,g,h){
-      adjust();
+    //  adjust();
       if(!b)
       {
        b=!b;
@@ -226,7 +226,7 @@ export default function Sidebar(second,setSecond) {
     }
 
     function bookmark( a,b,c,d,e,f,g,h){
-      adjust();
+    //  adjust();
       if(!b)
       {
        b=!b;
@@ -266,7 +266,7 @@ export default function Sidebar(second,setSecond) {
     }
     function user(a,b,c,d,e,f,g,h)
     {
-      adjust();
+     // adjust();
       if(!b)
       {
        b=!b;
@@ -305,7 +305,7 @@ export default function Sidebar(second,setSecond) {
     }
     function setting(a,b,c,d,e,f,g,h)
     {
-      adjust();
+     // adjust();
       if(!b)
       {
        b=!b;
@@ -353,11 +353,8 @@ export default function Sidebar(second,setSecond) {
       </Link>
        <div id="div1" className=" mt-4">
        <Tooltip title="LayerList" placement="right" arrow >
-       <Link href="/"  className={` items-center flex py-4 text-xl border-l-2 transition-colors duration-300 ${
-      !Layer
-        ? 'border-blue-500'
-        : 'border-transparent hover:border-blue-500'
-    }`} onClick={() => {setLayer(!Layer),layer(Layer,Tool,Catalog,Element1,Element2,Bookmark,User,Setting)}} >
+       <Link href="/"  className={` items-center flex py-4 text-xl border-l-2 transition-colors duration-300 ${!Layer  ? 'border-blue-500'  : 'border-transparent hover:border-blue-500' }`} 
+             onClick={() => {setLayer(!Layer),layer(Layer,Tool,Catalog,Element1,Element2,Bookmark,User,Setting)}} >
             < GrStackOverflow className="ml-0.5 fill-slate-300" />
             
         </Link>
@@ -438,26 +435,38 @@ export default function Sidebar(second,setSecond) {
       !User
         ? 'border-blue-500'
         : 'border-transparent hover:border-blue-500'
-    }`}onClick={() => {setUser(!User),
+    }`} > 
+           <div className="cursor-pointer ">
+           <FaUser className="ml-0.5 fill-white " onClick={() => {setUser(!User),
             user(User,Layer,Tool,Catalog,Element1,Element2,Bookmark,Setting)
-          }} > 
-        <FaUser className="ml-0.5 fill-white" />
+          }} />
+           </div>
+           
           </Link>
           </Tooltip>
+          {!User &&(
+        <Panel7 />
+      )}
         </div>
-       
+                          
+          
         <div className="absolute  bottom-4 mb-4 ">
         <Tooltip title="Settings" placement="right" arrow >
           <Link href="" className={`items-center -mt-3 flex py-4 text-xl border-l-2 transition-colors duration-300 ${
       !Setting
         ? 'border-blue-500'
         : 'border-transparent hover:border-blue-500'
-    }`}onClick={() => {setSetting(!Setting),
+    }`} > 
+          <div className="cursor-pointer ">
+            <AiOutlineSetting className="ml-0.5 fill-slate-300" onClick={() => {setSetting(!Setting),
             setting(Setting,Layer,Tool,Catalog,Element1,Element2,Bookmark,User)
-          }} > 
-            <AiOutlineSetting className="ml-0.5 fill-slate-300" />
+          }}/>
+            </div>
           </Link>
           </Tooltip>
+          {!Setting &&(
+        <Panel8 />
+      )}
         </div>
       </div>
       <div>
@@ -468,7 +477,7 @@ export default function Sidebar(second,setSecond) {
         <Panel2  />
       )}
       {!Catalog &&(
-       <Panel3 />
+       <Panel3 info={info}  />
       )}
       {!Element1 &&(
         <Panel4 />
@@ -479,12 +488,10 @@ export default function Sidebar(second,setSecond) {
       {!Bookmark &&(
         <Panel6 />
       )}
-      {!User &&(
-        <Panel7 />
-      )}
-      {!Setting &&(
+      
+      {/* {!Setting &&(
         <Panel8 />
-      )}
+      )}  */}
 
       </div>
       
